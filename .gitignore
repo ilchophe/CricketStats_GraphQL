@@ -1,0 +1,14 @@
+obj/CricketStatsGraphQL.csproj.nuget.dgspec.json
+obj/CricketStatsGraphQL.csproj.nuget.g.props
+obj/CricketStatsGraphQL.csproj.nuget.g.targets
+obj/project.assets.json
+obj/project.nuget.cache
+obj/Debug/net5.0/.NETCoreApp,Version=v5.0.AssemblyAttributes.cs
+obj/Debug/net5.0/CricketStatsGraphQL.AssemblyInfo.cs
+obj/Debug/net5.0/CricketStatsGraphQL.AssemblyInfoInputs.cache
+obj/Debug/net5.0/CricketStatsGraphQL.assets.cache
+obj/Debug/net5.0/CricketStatsGraphQL.csprojAssemblyReference.cache
+obj/Debug/net5.0/CricketStatsGraphQL.GeneratedMSBuildEditorConfig.editorconfig
+obj/Debug/net5.0/project.razor.json
+.vscode/launch.json
+.vscode/tasks.json
