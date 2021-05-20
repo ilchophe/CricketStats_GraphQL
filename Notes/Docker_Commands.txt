@@ -1,0 +1,2 @@
+Docker exec -it sql2019 mkdir /var/opt/mssql/backups   
+Docker cp ./mssql/AdventureWorks2017.bak sql2019:/var/opt/mssql/backups  

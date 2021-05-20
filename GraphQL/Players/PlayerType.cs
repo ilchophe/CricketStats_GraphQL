@@ -15,6 +15,8 @@ namespace CricketStatsGraphQL.GraphQL.Players
              descriptor
                 .Description("Cricket player.");
 
+            
+
             descriptor
                 .Field(p => p.Country)
                 .ResolveWith<Resolvers>(p => p.GetCountry(default!,default!))

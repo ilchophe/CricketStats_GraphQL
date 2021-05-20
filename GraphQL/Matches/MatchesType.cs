@@ -15,6 +15,7 @@ namespace CricketStatsGraphQL.GraphQL.Matches
              descriptor
                 .Description("Cricket match.");
 
+
             descriptor
                 .Field(p => p.BattingInns)
                 .ResolveWith<Resolvers>(p => p.GetBattingInns(default!,default!))

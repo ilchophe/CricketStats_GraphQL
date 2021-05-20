@@ -54,6 +54,7 @@ namespace CricketStatsGraphQL
              services
                 .AddGraphQLServer()
                 .AddQueryType<Query>()
+                .AddMutationType<Mutation>()
                 .AddType<PlayerType>()
                 .AddType<VenueType>()
                 .AddType<MatchTypeType>()
@@ -63,7 +64,8 @@ namespace CricketStatsGraphQL
                 .AddType<BattingInnType>()
                 .AddType<MatchesType>()
                 .AddFiltering()
-                .AddSorting();
+                .AddSorting()            
+                .AddInMemorySubscriptions();
 
           
 

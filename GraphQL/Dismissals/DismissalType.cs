@@ -15,6 +15,8 @@ namespace CricketStatsGraphQL.GraphQL.Dismissals
              descriptor
                 .Description("Type of dismissal when a wicket is taken.");
 
+           
+
             descriptor
                 .Field(p => p.BattingInns)
                 .ResolveWith<Resolvers>(p => p.GetBattingInns(default!,default!))

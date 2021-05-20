@@ -235,8 +235,6 @@ namespace CricketStatsGraphQL.Migrations
 
                     b.HasIndex("CountryTossWonId");
 
-                    b.HasIndex("HomeCountryId");
-
                     b.HasIndex("MatchTypeId");
 
                     b.HasIndex("VenueId");
@@ -421,12 +419,6 @@ namespace CricketStatsGraphQL.Migrations
                         .WithMany("MatchesTossCountries")
                         .HasForeignKey("CountryTossWonId");
 
-                    b.HasOne("CricketStatsGraphQL.Models.Country", "Country")
-                        .WithMany("Matches")
-                        .HasForeignKey("HomeCountryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("CricketStatsGraphQL.Models.MatchType", "MatchType")
                         .WithMany("Matches")
                         .HasForeignKey("MatchTypeId")
@@ -438,8 +430,6 @@ namespace CricketStatsGraphQL.Migrations
                         .HasForeignKey("VenueId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
-
-                    b.Navigation("Country");
 
                     b.Navigation("CountryAway");
 
@@ -479,8 +469,6 @@ namespace CricketStatsGraphQL.Migrations
                     b.Navigation("BattingInns");
 
                     b.Navigation("BowlingInns");
-
-                    b.Navigation("Matches");
 
                     b.Navigation("MatchesAwayCountries");
 

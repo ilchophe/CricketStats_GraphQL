@@ -15,6 +15,7 @@ namespace CricketStatsGraphQL.GraphQL.Players
              descriptor
                 .Description("Batting innings of a match.");
 
+
             descriptor
                 .Field(p => p.Country)
                 .ResolveWith<Resolvers>(p => p.GetCountry(default!,default!))

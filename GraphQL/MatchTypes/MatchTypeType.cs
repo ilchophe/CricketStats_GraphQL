@@ -15,6 +15,8 @@ namespace CricketStatsGraphQL.GraphQL.MatchTypes
              descriptor
                 .Description("Type of match such as test match.");
 
+               
+
 
             descriptor
                 .Field(p => p.Matches)
