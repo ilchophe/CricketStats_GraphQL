@@ -1,2 +1,8 @@
-Docker exec -it sql2019 mkdir /var/opt/mssql/backups   
-Docker cp ./mssql/AdventureWorks2017.bak sql2019:/var/opt/mssql/backups  
+Docker exec -it cricketstats_graphql mkdir /var/opt/mssql/backups   
+Docker cp "G:\DATA\CricketStats_20160417 (1)\CricketStats_20160417.bak" cricketstats_graphql:/var/opt/mssql/backups  
+
+
+
+docker build -t cricketstatsgraphqlapi .
+
+docker run -p 8080:80 cricketstatsgraphqlapi
