@@ -48,7 +48,7 @@ namespace CricketStatsGraphQL.GraphQL
                 venue.VenueCity = input.VenueCity;
                 venue.LastUpdated = DateTimeOffset.Now;
 
-              context.Update(venue;
+              context.Update(venue);
 
               await context.SaveChangesAsync();
 

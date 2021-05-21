@@ -5,4 +5,9 @@ Docker cp "G:\DATA\CricketStats_20160417 (1)\CricketStats_20160417.bak" crickets
 
 docker build -t cricketstatsgraphqlapi .
 
-docker run -p 8080:80 cricketstatsgraphqlapi
+docker run -p 8080:80 cricketstatsgraphqlapi --network cricket-net --name api
+
+docker run -itd -p 8080:80 cricketstatsgraphqlapi --alias api --network=cricket-net busybox
+
+
+docker network connect cricket-net friendly_raman

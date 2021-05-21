@@ -10,3 +10,30 @@ services:
             MSSQL_PID: "Express"
         ports:
             - "1433:1433"
+        networks:
+            - cricket-net
+        volumes: 
+            - sqlsystem:/var/opt/mssql/
+            - sqldata:/var/opt/sqlserver/data
+            - sqllog:/var/opt/sqlserver/log
+            - sqlbackup:/var/opt/sqlserver/backup
+
+    api:
+        image: "cricketstatsgraphqlapi"            
+        hostname: "cricketstatsapi"
+        container_name: "cricketstatsapi_graphql"
+        ports:
+            - 8080:80
+        networks:
+            - cricket-net
+
+networks:
+    cricket-net:
+        external: true
+        name: cricket-net
+
+volumes:
+    sqlsystem:
+    sqldata:
+    sqllog:
+    sqlbackup:
