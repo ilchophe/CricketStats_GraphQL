@@ -5,7 +5,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using CricketStatsGraphQL.Data;
 using CricketStatsGraphQL.GraphQL.BattingInns;
-using CricketStatsGraphQL.GraphQL.Countries;
 using CricketStatsGraphQL.Models;
 using HotChocolate;
 using HotChocolate.Data;
@@ -48,6 +47,58 @@ namespace CricketStatsGraphQL.GraphQL {
              return new AddBattingInnPayload(battingInn);
 
         }
+
+
+
+         [UseDbContext(typeof(AppDbContext))]
+        public async Task<AddBattingInnPayload> UpdateBattingInnAsync(
+                AddBattingInnInput input,
+                int battingInnId,
+                [ScopedService] AppDbContext context)
+        {
+              var battingInn = context.BattingInns.FirstOrDefault(b => b.Id == battingInnId);
+
+              battingInn.BallsFaced = input.BallsFaced;
+              battingInn.BowlerPlayerId = input.BowlerPlayerId;
+              battingInn.CountryId = input.CountryId;
+              battingInn.DismissalId = input.DismissalId;
+              battingInn.FielderPlayerId = input.FielderPlayerId;
+              battingInn.FirstInns = input.FirstInns;
+              battingInn.Fours = input.Fours;
+              battingInn.MatchId = input.MatchId;
+              battingInn.PlayerId = input.PlayerId;
+              battingInn.Runs = input.Runs;
+              battingInn.Sixes = input.Sixes;
+              battingInn.LastUpdated = DateTimeOffset.Now;
+
+              context.Update(battingInn);
+
+              await context.SaveChangesAsync();
+
+              return new AddBattingInnPayload(battingInn);
+
+
+        }
+
+
+        [UseDbContext(typeof(AppDbContext))]
+        public async Task<DeletePayload> DeleteBattingInnAsync(
+                int battingInnId,
+                [ScopedService] AppDbContext context)
+        {
+              var battingInn = context.BattingInns.FirstOrDefault(b => b.Id == battingInnId);
+
+              if (battingInn == null) return new DeletePayload($"Deletion failed due to BattingInn ID: {battingInnId} not found.");
+
+              context.Remove(battingInn);
+
+              await context.SaveChangesAsync();
+
+              return new DeletePayload($"Deletion of BattingInn ID: {battingInnId}, successful.");
+
+
+        }
+
 
      
 
