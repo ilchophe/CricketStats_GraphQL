@@ -51,6 +51,8 @@ namespace CricketStatsGraphQL
                 // .AddScoped<IPlayer,PlayerRepository>()
                 // .AddScoped<IVenue,VenueRepository>();
 
+             services.AddCors();   
+
              services
                 .AddGraphQLServer()
                 .AddQueryType<Query>()
@@ -80,6 +82,12 @@ namespace CricketStatsGraphQL
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors(x => x
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .SetIsOriginAllowed(origin => true) // allow any origin
+                .AllowCredentials()); // allow credentials
+           
             app.UseWebSockets();
 
             app.UseRouting();

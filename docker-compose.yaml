@@ -1,9 +1,8 @@
-version: '3'
+version: '3.8'
 services:
     sqlserver:
         image:   "mcr.microsoft.com/mssql/server:2019-latest"
         hostname: cricketstatssqlserver
-        container_name: "cricketstats_graphql"
         environment: 
             ACCEPT_EULA: "Y"
             SA_PASSWORD: "Ilchophe4991*!"
@@ -11,7 +10,7 @@ services:
         ports:
             - "1433:1433"
         networks:
-            - cricket-net
+            - cricket-net-swarm
         volumes: 
             - sqlsystem:/var/opt/mssql/
             - sqldata:/var/opt/sqlserver/data
@@ -19,18 +18,16 @@ services:
             - sqlbackup:/var/opt/sqlserver/backup
 
     api:
-        image: "cricketstatsgraphqlapi"            
+        image: "ilchophe/cricketstatsgraphqlapi"            
         hostname: "cricketstatsapi"
-        container_name: "cricketstatsapi_graphql"
         ports:
             - 8080:80
         networks:
-            - cricket-net
+            - cricket-net-swarm
 
 networks:
-    cricket-net:
-        external: true
-        name: cricket-net
+    cricket-net-swarm:
+
 
 volumes:
     sqlsystem:

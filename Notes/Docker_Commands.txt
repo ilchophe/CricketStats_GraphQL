@@ -3,11 +3,49 @@ Docker cp "G:\DATA\CricketStats_20160417 (1)\CricketStats_20160417.bak" crickets
 
 
 
-docker build -t cricketstatsgraphqlapi .
+docker build -t ilchophe/cricketstatsgraphqlapi .
 
-docker run -p 8080:80 cricketstatsgraphqlapi --network cricket-net --name api
+docker run -p 8080:80 ilchophe/cricketstatsgraphqlapi --network cricket-net --name api
 
-docker run -itd -p 8080:80 cricketstatsgraphqlapi --alias api --network=cricket-net busybox
+docker run -itd -p 8080:80 ilchophe/cricketstatsgraphqlapi --alias api --network=cricket-net busybox
 
 
 docker network connect cricket-net friendly_raman
+
+
+
+swarm:
+------
+Swarm initialized: current node (i17q1wgkz1tbp0i84y3ovth3w) is now a manager.
+
+docker swarm join --token SWMTKN-1-3blisiig58h4qrz5iezs7z7zi5kwz3au2pblahm6504bgpjr3j-399kqlyg162sar9xg9mifsopz 192.168.65.3:2377
+
+To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.
+
+
+docker stack deploy cricketstats-swarm -c docker-compose.yaml
+
+docker stack ls
+
+docker stack services cricketstats-swarm
+
+docker stack ps cricketstats-swarm
+
+docker service scale cricketstats-swarm_api=4
+
+docker service ls
+
+docker service ps cricketstats_api
+
+docker stack rm cricketstats-swarm
+
+docker swarm leave --force #maybe not run this
+
+
+YAML:
+------
+api:
+    build: .
+
+
+
